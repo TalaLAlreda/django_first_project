@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    {% for item in phone %}
+    <div class="row mt-5 d-flex justify-content-center text-center">
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <img src="../static/images/{{item.image}}" alt="" class="img-thumbnail w-50 h-100">
+                        </div>
+                        <div class="col-sm-9">
+                            <ul class="list-unstyled text-start">
+                                <li>
+                                    <h4 class="alert alert-success text-dark"> {{item.itemId.name}} </h4>
+                                </li>
+                                <li>
+                                    <strong> {{item.total}} SAR </strong>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <a href="{% url 'showDetails' id=item.id %}" class="btn btn-primary"> Product Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

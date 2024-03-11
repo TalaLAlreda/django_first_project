@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <header>
+        <!-- Jumbotron -->
+
+</div>
+<!-- Jumbotron -->
+
+<!-- Heading -->
+<div class="bg-light mt-5">
+    <div class="container py-4">
+        <!-- Breadcrumb -->
+        <nav class="d-flex">
+            <h6 class="mb-0">
+                <a href="{% url 'showApppliance' %}" class="text-dark-50">Home</a>
+                <span class="text-dark-50 mx-2"> > </span>
+                <a href="" class="text-dark"><u>{{product.manufacturer}} {{product.product_type}}</u></a>
+            </h6>
+        </nav>
+        <!-- Breadcrumb -->
+    </div>
+</div>
+<!-- Heading -->
+</header>
+
+<!-- content -->
+<section class="bg-light border-top py-5">
+    <div class="container">
+        <div class="row gx-5">
+            <aside class="col-lg-6">
+                <div class="border rounded-4 mb-3 d-flex justify-content-center">
+                    <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image"
+                        href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big.webp">
+                        <img style="width: 400px; margin: auto;" class="rounded-4 fit img-thumbnail"
+                            src="../../static/images/{{product.image}}" alt="../static/images/{{product.image}}" />
+                    </a>
+                </div>
+                <!-- thumbs-wrap.// -->
+                <!-- gallery-wrap .end// -->
+            </aside>
+            <main class="col-lg-6">
+                <div class="ps-lg-3">
+                    <h4 class="title text-dark">
+                        <span class="badge bg-secondary">{{product.manufacturer}} {{product.product_type}}</span>
+
+                    </h4>
+                    <div class="d-flex flex-row my-3">
+                        <div class=" mb-1 me-2">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            {% if product.quantity >= 10 %}
+                            <span class='text-success'>{{product.quantity}} In Stock</span>
+                            {% else %}
+                            <span class='text-danger'>{{product.quantity}} In Stock</span>
+                            {%endif%}
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <span class="h5">{{product.price}} SAR</span>
+                        <span class="text-muted">/per box</span>
+                    </div>
+
+                    <p>
+                        {{product.description}}
+                    </p>
+
+                    <div class="row">
+                        <dt class="col-3">Weight:</dt>
+                        <dd class="col-9">{{product.weight}} Kg</dd>
+
+                        <dt class="col-3">color:</dt>
+                        <dd class="col-9">{{product.color}}</dd>
+
+                        <dt class="col-3">Manufacturer</dt>
+                        <dd class="col-9">{{product.manufacturer}}</dd>
+
+                        <dt class="col-3">Warranty</dt>
+                        <dd class="col-9">{{product.warranty}} months</dd>
+                    </div>
+
+                    <hr />
+
+
+                    <a href="#" class="btn btn-warning shadow-0"> Buy now </a>
+                    <a href="{% url 'addToCartH' id=product.id %}" class="btn btn-primary shadow-0"> <i
+                            class="me-1 fa fa-shopping-basket"></i> Add to
+                        cart </a>
+                    {% if product.shipment_fee == 0%}
+                    <h6 class="text-success">Free shipping</h6>
+                    {% else %}
+                    <h6>{{product.shipment_fee}} SAR shipment fee</h6>
+                    {%endif%}
+                </div>
+            </main>
+        </div>
+    </div>
+</section>
+<!-- content -->
+
+{% endblock %}

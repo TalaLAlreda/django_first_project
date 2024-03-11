@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+<section style="background-color: #eee;" class='mt-5'>
+    <div class="container py-5">
+        {% for item in product %}
+        <div class="row justify-content-center mb-3">
+            <div class="col-md-12 col-xl-10">
+                <div class="card shadow-0 border rounded-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                                <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                                    <img src="../static/images/{{item.image}}"
+                                        class="w-100 img-thumbnail" />
+                                    <a href="#!">
+                                        <div class="hover-overlay">
+                                            <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);">
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-xl-6">
+                                <h5><strong>{{item.manufacturer}}</strong> {{item.product_type}}</h5>
+                                <div class="d-flex flex-row">
+                                    <div class="text-danger mb-1 me-2">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    {% if item.quantity >= 10 %}
+                                    <span class='text-success'>{{item.quantity}} In Stock</span>
+                                    {% else %}
+                                    <span class='text-danger'>{{item.quantity}} In Stock</span>
+                                    {%endif%}
+                                </div>
+                                <p class="mb-4 mb-md-0">
+                                    {{item.description}}
+                                </p>
+                            </div>
+                            <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+                                <div class="d-flex flex-row align-items-center mb-1">
+                                    <h4 class="mb-1 me-1">{{item.price}} SAR</h4>
+                                </div>
+                                {% if item.shipment_fee == 0%}
+                                <h6 class="text-success">Free shipping</h6>
+                                {% else %}
+                                <h6>{{item.shipment_fee}} SAR shipment fee</h6>
+                                {%endif%}
+                                <div class="d-flex flex-column mt-4">
+                                    <a href="{% url 'details' id=item.id %}"><button class="btn btn-primary btn-sm" type="button">Details</button></a>
+                                    <a href="#"><button class="btn btn-outline-primary btn-sm mt-2" type="button">
+                                        Add to Cart
+                                    </button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
